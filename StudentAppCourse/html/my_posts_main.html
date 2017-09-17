@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/castapp.css" />
+		<link rel="stylesheet" type="text/css" href="../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../css/my_posts.css" />
+		<link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+		
+
+	</head>
+
+	<body class="public-white-bgcolor">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #FFFFFF;"></a>
+			<h1 id="title" class="mui-title">我的提问</h1>
+
+		</header>
+		<div class="mui-content public-white-bgcolor">
+
+		</div>
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/comme.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/castapp.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		//启用双击监听
+		mui.init({
+			beforeback: function() {
+				//获得列表界面的webview
+				var v = plus.webview.getWebviewById("question_center");
+				//触发列表界面的自定义事件（refresh）,从而进行数据刷新
+				mui.fire(v, 'postRefresh');
+				//返回true，继续页面关闭逻辑
+				return true;
+			},
+			gestureConfig: {
+				doubletap: true
+			},
+			subpages: [{
+				url: 'my_posts_sub.html',
+				id: 'my_posts_sub',
+				styles: {
+					top: '45px',
+					bottom: '0px',
+				}
+			}]
+		});
+
+		var contentWebview = null;
+		document.querySelector('header').addEventListener('doubletap', function() {
+			if(contentWebview == null) {
+				contentWebview = plus.webview.currentWebview().children()[0];
+			}
+			contentWebview.evalJS("mui('#pullrefresh').pullRefresh().scrollTo(0,0,100)");
+		});
+	</script>
+
+</html>

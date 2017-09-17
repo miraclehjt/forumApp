@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chenzl.app.mappers.SysForumPostClickMapper" >
+  <resultMap id="BaseResultMap" type="com.chenzl.app.entity.CctForumPostClick" >
+    <id column="POST_CLICK_ID" property="postClickId" jdbcType="INTEGER" />
+    <result column="POST_ID" property="postId" jdbcType="INTEGER" />
+    <result column="CREATE_USER" property="createUser" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    POST_CLICK_ID, POST_ID, CREATE_STAFF, CREATE_DATE
+  </sql>
+  
+</mapper>

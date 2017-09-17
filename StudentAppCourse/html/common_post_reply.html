@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/castapp.css" />
+		<link rel="stylesheet" type="text/css" href="../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../css/common_post_reply.css" />
+		<link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+		<link rel="stylesheet" type="text/css" href="../libs/emojione/emojione.css"/>
+	</head>
+
+	<body class="public-white-bgcolor" contextmenu="return false;">
+		<header class="mui-bar mui-bar-nav public-blue-bgcolor" style="background-color: #FAFAFA;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #FFFFFF;"></a>
+			<!--<h1 id="title" class="mui-title">问题回复列表</h1>-->
+		</header>
+		<div id="content" class="mui-content public-white-bgcolor">
+			<div id="reply_main_view">
+				<div class="postContent">
+					<div id="post_title" class="post_title"></div>
+					<div class="user_info1">
+						<img id="portrait" class="staff_head" src="../images/head.png"/>
+						<div id="staff_time">
+							<p id="staff">
+								
+							</p>
+							<p id="create_time">
+								
+							</p>
+						</div>
+						<div class="gz">
+							<span id="zhan1">
+								<!--<span id="zhan1_star" class="mui-icon mui-icon-star"></span>-->
+								<span id="icon" class="iconfont icon-guanzhu1"></span>
+								<p id="stars"></p>
+							</span>
+						</div>
+					</div>
+					<p id="kb_content" class="post_kb_content">
+						相关知识：<a id="kbTitle" href="javascript:void(0);"></a>
+					</p>
+					<p id="post_content" class="post_Con">
+					</p>
+				</div>
+				<!--<div class="line_horizontal"></div>-->
+				<div id="reply_list_view">
+					<ul class="reply_view mui-table-view" id="postReplylist">
+					
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="reply_content_view">
+			<input type="text" id="postReplyContent" placeholder="请输入回复内容"/>
+			<div id="button_view">
+				<button type="button" id="btnSend" class="mui-btn mui-btn-primary">发送</button>
+			</div>
+		</div>
+		<script type="text/javascript" src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/castapp.js"></script>
+		<script src="../js/comme.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="../libs/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="../libs/emojione/emojione.js"></script>
+		<script type="text/javascript" src="../js/common_post_reply.js"></script>
+	</body>
+
+</html>

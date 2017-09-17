@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.chenzl.app.mappers.backend.knowledgeSearch.CctCscappKeywordMapper">
+	<resultMap id="BaseResultMap" type="com.chenzl.app.entity.CctCscappKeyword">
+		<id column="keyword_id" property="keywordId" jdbcType="INTEGER" />
+		<result column="keyword" property="keyword" jdbcType="VARCHAR" />
+		<result column="creat_time" property="creatTime" jdbcType="DATE" />
+		<result column="create_user" property="createUser" jdbcType="VARCHAR" />
+		<result column="update_time" property="updateTime" jdbcType="DATE" />
+		<result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+		<result column="keyword_level" property="keywordLevel" jdbcType="INTEGER" />
+	</resultMap>
+	<select id="getKeywordsForPage" resultMap="BaseResultMap"
+		parameterType="java.util.HashMap">
+  <![CDATA[
+  select * from sys_cscapp_keyword
+  ]]>
+	</select>
+
+	<select id="getRecommendKeywords" resultMap="BaseResultMap">
+  <![CDATA[
+  select * from sys_cscapp_keyword where keyword_level = 0
+  ]]>
+	</select>
+
+	<select id="queryDefaultKeyword" resultType="java.lang.String">
+			<![CDATA[select t.keyword 
+			  from cct_cscapp_keyword t 
+			 where t.keyword_level = 1
+			 ]]>
+	</select>
+
+	<select id="queryRecommendKeyword" resultType="java.lang.String">
+		<![CDATA[
+			select t.keyword 
+			  from sys_cscapp_keyword t 
+			 where t.keyword_level = 0
+			 ]]>
+	</select>
+
+	<update id="updateKeywordLevelNotId" parameterType="java.util.HashMap">
+		<![CDATA[
+		update sys_cscapp_keyword
+		   set keyword_level = #{keywordLevel,jdbcType=INTEGER}
+		 where keyword_id != #{keywordId,jdbcType=INTEGER}
+		]]>
+	</update>
+</mapper>

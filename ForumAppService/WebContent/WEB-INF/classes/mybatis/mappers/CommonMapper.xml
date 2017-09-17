@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+				"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chenzl.app.mappers.common.CommonMapper">
+
+	<!-- 调用usp_getno存储过程生成主键 -->
+	<select id="queryPrimaryKeyByProcedure" statementType="CALLABLE" parameterType="java.util.Map">
+		<![CDATA[
+			{call usp_getno(#{tableName,mode=IN,jdbcType=VARCHAR},#{columnname,mode=IN,jdbcType=VARCHAR},#{valuelength,mode=IN,jdbcType=INTEGER},#{numValue,mode=OUT,jdbcType=VARCHAR})}
+		]]>
+	</select>
+	
+	<!-- 查询sequence -->
+	<select id="generatePrimaryKeyBySequence" parameterType="map" resultType="string">
+		<![CDATA[
+			select to_char(${sequenceName}.nextval) from dual
+		]]>
+	</select>
+	
+	<select id="getAppUserCount" resultType="java.lang.Long">
+		select count(t.staff_id) from cct_log_secretary_app_login t  where  
+    <![CDATA[to_char (t.login_time,'YYYYMM')=to_char(Sysdate,'YYYYMM')]]>
+	</select>
+	
+	<select id="getBSDcmntInfoByDocumengId" resultType="BSDcmntInfo" parameterType="java.util.Map">
+		select m.trans_doc_name as transDocName, m.cfg_ftp_path_code as cfgFtpPathCode, m.document_name as documentName from bs_dcmnt_info m
+ 			where m.document_id = #{documentId, jdbcType=VARCHAR}
+	</select>
+	
+	<select id="getCfgFtpByPathCode" resultType="CfgFtp" parameterType="java.util.Map">
+		select f.host_ip as hostIp,f.port,f.username as userName,f.password,p.remote_path as remotePath from cfg_ftp f ,cfg_ftp_path p 
+			where f.cfg_ftp_code = p.cfg_ftp_code and p.cfg_ftp_path_code = #{pathCode, jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 根据包名查询最新版本 -->
+	<select id="queryAppNewVersion" parameterType="java.lang.String" resultType="java.util.HashMap">
+		select version,
+		       apk_path,
+		       version2,
+		       ipa_path
+		  from (
+			select * 
+			  from cct_app_version_deploy
+			 where appid = #{appid, jdbcType=VARCHAR}
+			 order by upload_time desc
+		) where rownum = 1
+	</select>
+	
+	<!-- 增加新的引用信息 -->
+	<insert id="insertNewAppInfo" parameterType="java.util.HashMap">
+		insert into cct_app_version_deploy
+		(
+			version,
+			upload_time,
+			appid,
+			apk_path,
+			version2,
+			ipa_path
+		)
+		values
+		(
+			#{version, jdbcType=VARCHAR},
+			sysdate,
+			#{appid, jdbcType=VARCHAR},
+			#{apkpath, jdbcType=VARCHAR},
+			#{version2, jdbcType=VARCHAR},
+			#{ipapath, jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	<!-- 查询时间戳 -->
+	<select id="selectSysDate" resultType="java.sql.Timestamp">
+		select sysdate() as value from dual
+	</select>
+</mapper>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+				"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!-- 后台配置提问审核相关管理 -->
+<mapper namespace="com.chenzl.app.mappers.backend.fourm.ForumMapper">
+  	<resultMap id="BaseResultMap" type="com.chenzl.app.bean.backend.forum.SysForumPostSelect" >
+	    <id column="post_id" property="postId" jdbcType="DECIMAL" />
+	    <result column="category_id" property="categoryId" jdbcType="INTEGER" />
+	    <result column="post_title" property="postTitle" jdbcType="VARCHAR" />
+	    <result column="post_type" property="postType" jdbcType="INTEGER" />
+	    <result column="kb_id" property="kbId" jdbcType="INTEGER" />
+	    <result column="kb_title" property="kbTitle" jdbcType="VARCHAR" />
+	    <result column="area_id" property="areaId" jdbcType="VARCHAR" />
+	    <result column="state" property="state" jdbcType="INTEGER" />
+	    <result column="star_num" property="starNum" jdbcType="INTEGER" />
+	    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+	    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+	    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+	    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+	    <result column="audit_state" property="auditState" jdbcType="INTEGER" />
+	    <result column="audit_user" property="auditUser" jdbcType="VARCHAR" />
+	    <result column="audit_comment" property="auditComment" jdbcType="VARCHAR" />
+	    <result column="audit_date" property="auditDate" jdbcType="TIMESTAMP" />
+	    <result column="post_content" property="postContent" jdbcType="VARCHAR" />
+	    <result column="category_name" property="categoryName" jdbcType="VARCHAR" />
+  	</resultMap>
+
+	<select id="getForumPostList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+		select a.*,
+	       c.category_name
+		  from sys_forum_post a, sys_forum_category c
+			 where a.post_type in (select post_type
+			                       from sys_forum_audit_user
+			                      where user_id = #{userId,jdbcType=VARCHAR})
+			   and a.category_id = c.category_id
+			   <if test="auditState !=null and auditState !='' ">
+				and a.audit_state= #{auditState, jdbcType=INTEGER}
+			   </if>
+			   <if test="categoryId !=null and categoryId !='' and categoryId != 1">
+			    and a.category_id= #{categoryId, jdbcType=INTEGER}
+			  </if>
+			   <if test="postName !=null and postName !='' ">
+				and a.post_title LIKE '%'||#{postName, jdbcType=VARCHAR}||'%'
+			   </if>
+			   and a.state=1
+			   order by a.create_date desc
+	</select>
+
+ 	<update id="saveCheck" parameterType="java.util.HashMap">
+		update sys_forum_post
+		<set>
+			<if test="auditState != null" >
+			audit_state = #{auditState,jdbcType=INTEGER},
+			</if>
+			<if test="auditComment != null" >
+			audit_comment = #{auditComment,jdbcType=VARCHAR},
+			</if>
+			<if test="auditDate != null" >
+			audit_date = #{auditDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="auditUser != null" >
+			audit_user = #{auditUser,jdbcType=VARCHAR},
+			</if>
+		</set>
+		 where post_id = #{postId,jdbcType=INTEGER}
+	</update> 
+</mapper>

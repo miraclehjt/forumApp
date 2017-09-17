@@ -1,0 +1,523 @@
+{
+	"html/guide.html": {
+		"resources": [
+			"js/castapp.js",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"js/comme.js",
+			"css/common.css",
+			"images/zhishi1.jpg",
+			"images/zhishi2.jpg",
+			"images/zhishi3.jpg"
+		],
+		"refer": [
+			"html/login.html"
+		]
+	},
+	"html/login.html": {
+		"resources": [
+			"js/app.js",
+			"css/style.css",
+			"js/mui.enterfocus.js",
+			"js/castapp.js",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"fonts/mui.ttf",
+			"images/sinaweibo.png",
+			"images/weixin.png",
+			"images/qq.png",
+			"js/login.js",
+			"css/login.css",
+			"images/headline.png",
+			"images/zhishi1.jpg",
+			"js/jquery.min.js",
+			"js/comme.js"
+		],
+		"refer": [
+			"html/reg.html",
+			"html/forget_password.html",
+			"html/home.html",
+			"html/unlock.html",
+			"html/footer.html",
+			"html/main.html"
+		]
+	},
+	"html/reg.html": {
+		"resources": [
+			"js/app.js",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/style.css",
+			"css/reg.css",
+			"js/comme.js",
+			"js/reg.js",
+			"js/castapp.js",
+			"js/jquery.min.js"
+		]
+	},
+	"html/forget_password.html": {
+		"resources": [
+			"fonts/mui.ttf",
+			"js/app.js",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"css/style.css"
+		]
+	},
+	"html/home.html": {
+		"resources": [
+			"css/common.css",
+			"js/castapp.js",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"js/home.js",
+			"css/home.css",
+			"js/app.js",
+			"fonts/mui.ttf",
+			"images/headline.png",
+			"images/qihoo.png",
+			"images/user-photo.png",
+			"images/zhishi2.jpg",
+			"images/zhishi3.jpg",
+			"images/zhishi1.jpg",
+			"images/qq.png",
+			"images/sinaweibo.png",
+			"js/comme.js",
+			"js/jquery.min.js",
+			"css/castapp.css"
+		],
+		"refer": [
+			"html/developing.html",
+			"html/setting.html",
+			"html/kbContentDetail.html",
+			"html/web_browser.html"
+		]
+	},
+	"html/setting.html": {
+		"resources": [
+			"libs/easemob.im-1.0.5.js",
+			"libs/json2.js",
+			"libs/strophe-custom-2.0.0.js",
+			"libs/jquery-1.11.1.js",
+			"js/mui.locker.js",
+			"js/feedback.js",
+			"js/feedback-page.js",
+			"js/mui.view.js",
+			"fonts/mui.ttf",
+			"js/app.js",
+			"js/mui.min.js",
+			"css/mui.min.css"
+		]
+	},
+	"html/unlock.html": {
+		"resources": [
+			"js/app.js",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"js/mui.locker.js"
+		],
+		"refer": [
+			"html/home.html"
+		]
+	},
+	"html/message.html": {
+		"resources": [
+			"images/iconfont-tianjia.png",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"fonts/mui.ttf"
+		]
+	},
+	"html/footer.html": {
+		"resources": [
+			"css/castapp.css",
+			"css/common.css",
+			"fonts/mui.ttf",
+			"html/home.html",
+			"js/castapp.js",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"js/comme.js"
+		],
+		"refer": [
+			"html/collect.html",
+			"html/setting.html",
+			"html/message.html",
+			"html/home.html",
+			"html/forum.html",
+			"html/MySetting.html",
+			"html/kb_forum_category.html"
+		]
+	},
+	"html/collect.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"images/iconfont-tianjia.png",
+			"fonts/mui.ttf"
+		]
+	},
+	"html/MySetting.html": {
+		"resources": [
+			"js/feedback.js",
+			"js/mui.view.js",
+			"css/mysetting.css",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/qq.png"
+		]
+	},
+	"html/forum.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/mui.pullToRefresh.js",
+			"js/mui.pullToRefresh.material.js",
+			"css/forum.css",
+			"css/common.css",
+			"css/castapp.css",
+			"js/castapp.js",
+			"libs/jquery/jquery.min.js",
+			"css/iconfont.css",
+			"fonts/iconfont.woff",
+			"images/head.png",
+			"js/form.js",
+			"js/comme.js"
+		],
+		"refer": [
+			"html/forum_post_list.html",
+			"html/forum_recommend_post.html",
+			"html/forum_hot_post.html",
+			"html/forum_post.html"
+		]
+	},
+	"html/developing.html": {
+		"resources": [
+			"images/iconfont-tianjia.png",
+			"js/mui.min.js",
+			"css/common.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/developing.png"
+		]
+	},
+	"html/kbContentDetail.html": {
+		"resources": [
+			"js/castapp.js",
+			"css/castapp.css",
+			"libs/jquery/jquery.min.js",
+			"js/mui.min.js",
+			"css/common.css",
+			"libs/emojione/emojione.js",
+			"css/kbContentDetail.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"libs/emojione/emojione.css",
+			"images/head.png",
+			"css/iconfont.css",
+			"fonts/iconfont.woff",
+			"js/kbContentDetail.js",
+			"js/comme.js"
+		]
+	},
+	"html/web_browser.html": {
+		"resources": [
+			"libs/jquery/jquery.min.js",
+			"js/castapp.js",
+			"css/castapp.css",
+			"js/mui.min.js",
+			"css/common.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/web_browser.css",
+			"js/comme.js",
+			"js/web_browser.js"
+		]
+	},
+	"html/forum_post_list.html": {
+		"resources": [
+			"css/forum_post_list.css",
+			"libs/emojione/emojione.js",
+			"js/forum_post_list.js",
+			"libs/emojione/emojione.css",
+			"js/castapp.js",
+			"js/jquery.min.js",
+			"js/comme.js",
+			"js/mui.min.js",
+			"css/common.css",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"fonts/mui.ttf",
+			"fonts/iconfont.woff"
+		],
+		"refer": [
+			"html/common_post_reply.html"
+		]
+	},
+	"html/common_post_reply.html": {
+		"resources": [
+			"css/castapp.css",
+			"libs/jquery/jquery.min.js",
+			"js/common_post_reply.js",
+			"css/common_post_reply.css",
+			"images/head.png",
+			"libs/emojione/emojione.js",
+			"fonts/mui.ttf",
+			"fonts/iconfont.woff",
+			"js/castapp.js",
+			"js/comme.js",
+			"css/common.css",
+			"js/mui.min.js",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"libs/emojione/emojione.css",
+			"images/zhiding_icon.png"
+		],
+		"refer": [
+			"html/forum_reply_debate.html",
+			"html/web_browser.html"
+		]
+	},
+	"html/forum_recommend_post.html": {
+		"resources": [
+			"js/forum_recommend_post.js",
+			"libs/emojione/emojione.js",
+			"css/forum_hot_post.css",
+			"libs/emojione/emojione.css",
+			"js/castapp.js",
+			"js/comme.js",
+			"js/jquery.min.js",
+			"js/mui.min.js",
+			"css/common.css",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"fonts/iconfont.woff",
+			"fonts/mui.ttf"
+		],
+		"refer": [
+			"html/common_post_reply.html"
+		]
+	},
+	"html/forum_hot_post.html": {
+		"resources": [
+			"js/forum_hot_post.js",
+			"css/forum_hot_post.css",
+			"fonts/mui.ttf",
+			"js/castapp.js",
+			"js/comme.js",
+			"js/jquery.min.js",
+			"js/mui.min.js",
+			"css/common.css",
+			"libs/emojione/emojione.js",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"libs/emojione/emojione.css",
+			"fonts/iconfont.woff"
+		],
+		"refer": [
+			"html/common_post_reply.html"
+		]
+	},
+	"html/forum_reply_debate.html": {
+		"resources": [
+			"js/forum_reply_debate.js",
+			"css/forum_reply_debate.css",
+			"js/castapp.js",
+			"css/castapp.css",
+			"libs/jquery/jquery.min.js",
+			"js/comme.js",
+			"js/mui.min.js",
+			"css/common.css",
+			"libs/emojione/emojione.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"libs/emojione/emojione.css"
+		]
+	},
+	"html/kb_forum_category.html": {
+		"refer": [
+			"html/forum_recommend_post.html",
+			"html/forum_post.html",
+			"html/forum_post_list.html",
+			"html/forum_hot_post.html",
+			"html/question_center.html",
+			"html/forum_post_Search.html"
+		],
+		"resources": [
+			"libs/jquery/jquery.min.js",
+			"css/forum.css",
+			"js/form.js",
+			"images/head.png",
+			"css/iconfont.css",
+			"fonts/iconfont.woff",
+			"js/castapp.js",
+			"js/comme.js",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		]
+	},
+	"html/forum_post.html": {
+		"resources": [
+			"js/forum_post.js",
+			"js/castapp.js",
+			"css/castapp.css",
+			"css/forum_post.css",
+			"libs/jquery/jquery.min.js",
+			"js/comme.js",
+			"js/mui.min.js",
+			"css/common.css",
+			"libs/emojione/emojione.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"libs/emojione/emojione.css"
+		]
+	},
+	"html/question_center.html": {
+		"resources": [
+			"js/question_center.js",
+			"js/castapp.js",
+			"js/comme.js",
+			"js/jquery.min.js",
+			"js/mui.min.js",
+			"css/common.css",
+			"fonts/mui.ttf",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"images/head.png",
+			"images/bg0-lg.jpg"
+		],
+		"refer": [
+			"html/my_posts_main.html",
+			"html/forum_post.html",
+			"html/my_reply_posts_main.html",
+			"html/star_post_main.html"
+		]
+	},
+	"html/main.html": {
+		"resources": [
+			"js/main.js",
+			"css/castapp.css",
+			"libs/jquery/jquery.min.js",
+			"css/main.css",
+			"html/home.html",
+			"js/castapp.js",
+			"js/comme.js",
+			"js/mui.min.js",
+			"css/common.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"html/kb_forum_category.html",
+			"html/MySetting.html",
+			"html/home.html"
+		]
+	},
+	"html/forum_post_Search.html": {
+		"resources": [
+			"css/forum_post_Search.css",
+			"css/mui.css",
+			"js/forum_post_Search.js",
+			"js/castapp.js",
+			"css/castapp.css",
+			"libs/jquery/jquery.min.js",
+			"js/comme.js",
+			"js/mui.min.js",
+			"css/common.css",
+			"fonts/mui.ttf",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"fonts/iconfont.woff"
+		],
+		"refer": [
+			"html/common_post_reply.html"
+		]
+	},
+	"html/my_posts_sub.html": {
+		"resources": [
+			"js/my_posts.js",
+			"fonts/iconfont.woff",
+			"js/jquery.min.js"
+		]
+	},
+	"html/my_posts_main.html": {
+		"resources": [
+			"css/castapp.css",
+			"html/my_posts_sub.html",
+			"fonts/mui.ttf",
+			"css/my_posts.css",
+			"js/castapp.js",
+			"js/comme.js",
+			"js/mui.min.js",
+			"css/common.css",
+			"css/iconfont.css",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"html/my_posts_sub.html"
+		]
+	},
+	"html/my_reply_posts_sub.html": {
+		"resources": [
+			"js/jquery.min.js",
+			"js/castapp.js",
+			"js/comme.js",
+			"js/mui.min.js",
+			"css/common.css",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"css/my_posts.css",
+			"js/my_reply_posts.js",
+			"fonts/iconfont.woff",
+			"fonts/mui.ttf"
+		],
+		"refer": [
+			"html/common_post_reply.html"
+		]
+	},
+	"html/my_reply_posts_main.html": {
+		"resources": [
+			"js/castapp.js",
+			"html/my_reply_posts_sub.html",
+			"css/castapp.css",
+			"js/comme.js",
+			"js/mui.min.js",
+			"css/common.css",
+			"fonts/mui.ttf",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"css/my_posts.css"
+		],
+		"refer": [
+			"html/my_reply_posts_sub.html"
+		]
+	},
+	"html/star_post_main.html": {
+		"resources": [
+			"css/castapp.css",
+			"js/mui.min.js",
+			"css/common.css",
+			"fonts/mui.ttf",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"html/star_post_sub.html"
+		],
+		"refer": [
+			"html/star_post_sub.html"
+		]
+	},
+	"html/star_post_sub.html": {
+		"resources": [
+			"js/castapp.js",
+			"js/comme.js",
+			"js/jquery.min.js",
+			"js/star_post.js",
+			"css/my_posts.css",
+			"fonts/iconfont.woff"
+		]
+	}
+}

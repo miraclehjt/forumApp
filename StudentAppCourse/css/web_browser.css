@@ -1,0 +1,29 @@
+/*重置底部导航栏的高度*/
+#home-nav.mui-bar-tab{
+	height: 60px;
+}
+/*定义搜索框背景颜色*/
+#home-header input[type=search]{
+	background: #32b9f8;
+}
+/*定义邮箱图标颜色*/
+#home-header .mui-icon-email{
+	font-size: 2.5rem;
+}
+/*定义默认placeholder的窗口宽度和字体颜色*/
+#home-header .mui-search .mui-placeholder{
+	width: 100%;
+/*	padding: 6px 0px 0px 0px;*/
+	color:#fff;
+}
+#home-header .mui-search .mui-placeholder .mui-icon{
+	color: #fff;
+}
+
+#home-header {
+	background: #1da9f6;
+}
+
+#web_title {
+	color: #ffffff;
+}

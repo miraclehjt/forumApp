@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chenzl.app.mappers.SysSliderMapper" >
+  <resultMap id="BaseResultMap" type="com.chenzl.app.entity.SysSlider" >
+    <id column="slider_id" property="sliderId" jdbcType="INTEGER" />
+    <result column="slider_img" property="sliderImg" jdbcType="VARCHAR" />
+    <result column="slider_link" property="sliderLink" jdbcType="VARCHAR" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="DATE" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="DATE" />
+    <result column="slider_name" property="sliderName" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="CHAR" />
+    <result column="sort_id" property="sortId" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="getInnerHomeSlider" resultMap="BaseResultMap">
+  <![CDATA[
+    select * from sys_slider  where state=1 order by SORT_ID ASC
+  ]]>
+  </select>
+  
+   <select id="getInnerSlidersForPage"  resultMap="BaseResultMap" parameterType="java.util.HashMap">
+  <![CDATA[
+      select * from sys_slider
+  ]]>
+  </select>
+    <select id="getInnerMaxSortId"  resultType="java.lang.Long">
+  <![CDATA[
+        select max(SORT_ID) from sys_slider 
+  ]]>
+  </select>
+</mapper>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chenzl.app.mappers.common.SysUserTelMapper" >
+  <resultMap id="BaseResultMap" type="com.chenzl.app.entity.SysUserTel" >
+    <id column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="getUserTelByUserId" resultType="java.util.HashMap" parameterType="java.lang.String">
+		select * from sys_user_tel where user_id = #{userId,jdbcType=VARCHAR}
+	</select>
+</mapper>

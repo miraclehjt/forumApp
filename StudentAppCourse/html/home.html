@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/castapp.css" />
+		<link rel="stylesheet" type="text/css" href="../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../css/home.css" />
+		<!--<link rel="stylesheet" type="text/css" href="../css/iconfont.css" />-->
+		<style type="text/css">
+			.mail {
+				width: 10%;
+				/*height: 42px;*/
+				float: right;
+				height: 30px;
+			}
+			
+			#email_icon {
+				color: #FFFFFF;
+				padding-top: 0px;
+				padding-bottom: 0px;
+				font-size: 30px;
+				line-height: 30px;
+			}
+			
+			.mui-icon .mui-badge {}
+			
+			#newReplyNum i {
+				display: block;
+				background: #f00;
+				border-radius: 50%;
+				width: 8px;
+				height: 8px;
+				top: 0px;
+				right: 0px;
+				margin-left: -5.0px;
+				margin-top: 5px;
+			}
+		</style>
+	</head>
+
+	<body class="public-white-bgcolor">
+		<!--头部搜索框-->
+		<header id="home-header" class="mui-bar mui-bar-nav public-blue-bgcolor">
+			<div class="mui-input-row" style="display: inline-block; width:100% ; margin:7px 0 7px 0; ">
+				<span id="search_icon" class="mui-icon mui-icon-search public-white-color" style="display: inline-block;"></span>
+				<input id="search_keyword" type="text" class="mui-input" placeholder="知识搜索" readonly="true">
+			</div>
+		</header>
+		<!--主体内容部分-->
+		<div class="mui-content" id="main-content">
+			<div id="slider" class="mui-slider">
+				<div id="slider" class="mui-slider">
+					<div class="mui-slider-group mui-slider-loop">
+						<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+						<div class="mui-slider-item mui-slider-item-duplicate">
+							<a href="#">
+								<img src="../images/zhishi1.jpg">
+							</a>
+						</div>
+						<!-- 第一张 -->
+						<div class="mui-slider-item">
+							<a href="#">
+								<img src="../images/zhishi2.jpg">
+							</a>
+						</div>
+						<!-- 第二张 -->
+						<div class="mui-slider-item">
+							<a href="#">
+								<img src="../images/zhishi3.jpg">
+							</a>
+						</div>
+						<!-- 第三张 -->
+						<div class="mui-slider-item">
+							<a href="#">
+								<img src="../images/zhishi1.jpg">
+							</a>
+						</div>
+						<!-- 第四张 -->
+						<div class="mui-slider-item">
+							<a href="#">
+								<img src="../images/zhishi2.jpg">
+							</a>
+						</div>
+						<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+						<div class="mui-slider-item mui-slider-item-duplicate">
+							<a href="#">
+								<img src="../images/zhishi3.jpg">
+							</a>
+						</div>
+					</div>
+					<div class="mui-slider-indicator">
+						<div class="mui-indicator mui-active"></div>
+						<div class="mui-indicator"></div>
+						<div class="mui-indicator"></div>
+						<div class="mui-indicator"></div>
+					</div>
+				</div>
+			</div>
+
+			<!--头条 -->
+			<table id="headline-box" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td class="headline-part" style="width: 24%;">
+						<div id="headlines-icon-bgd">
+							<span class="height-holder"></span>
+							<img class="headlines-icon" src="../images/headline.png" />
+						</div>
+					</td>
+					<td class="headline-part">
+						<div id="scroll-content">
+							<!--<div id="scroll-content1" class="scroll-content-wrap">
+								<table id="headlines-table">
+                                      <tr>
+                                      	<td>asd</td>
+                                      </tr>  
+								</table>
+								
+							</div>-->
+							<div id="scroll-content2" class="scroll-content-wrap">
+                                 <ul id="headlines-table">
+                                 	<li>新闻列表</li>
+                                 </ul>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<div id="app-question" class="business">
+				<div class="business-title_2">
+					<div class="title-Floor-text_2">推荐知识</div>
+					<ul class="mui-table-view" id="kblist">
+						<!--<li class="mui-table-view-cell mui-media">
+							<a href="javascript:;">
+								<div class="mui-media-body">知识类型_java
+									<p class="mui-ellipsis">java Study kb content</p>
+									<p class="mui-ellipsis" id="kbMe">发布人:陈造龙<span id="creT">创建时间:NaN-aN-aN</span></p>
+								</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media">
+							<a href="javascript:;">
+								<div class="mui-media-body">知识类型_aaaaaaa
+									<p class="mui-ellipsis">sssssssssssssss</p>
+									<p class="mui-ellipsis" id="kbMe">发布人:null<span id="creT">创建时间:NaN-aN-aN</span></p>
+								</div>
+							</a>
+						</li>-->
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<script src="../js/mui.min.js" type="text/javascript"></script>
+		<script src="../js/castapp.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/comme.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/jquery.min.js" type="text/javascript " charset="utf-8"></script>
+		<script src="../js/home.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.init();
+		</script>
+	</body>
+
+</html>

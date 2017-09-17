@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chenzl.app.mappers.backend.learn.SysKbMapper">
+	<resultMap id="BaseResultMap" type="com.chenzl.app.entity.SysKb">
+		<id column="kb_id" property="kbId" jdbcType="INTEGER" />
+		<result column="kb_title" property="kbTitle" jdbcType="VARCHAR" />
+		<result column="kb_type" property="kbType" jdbcType="INTEGER" />
+		<result column="state" property="state" jdbcType="INTEGER" />
+		<result column="create_date" property="createDate" jdbcType="DATE" />
+		<result column="update_date" property="updateDate" jdbcType="DATE" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+		<result column="kb_link" property="kbLink" jdbcType="VARCHAR" />
+		<result column="create_user" property="createUser" jdbcType="VARCHAR" />
+		<result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="getKbListForPage" resultMap="BaseResultMap"
+		parameterType="java.util.HashMap">
+		select a.kb_id,
+		a.kb_title,
+		a.kb_type,
+		a.state,
+		a.create_date,
+		a.update_date,
+		a.content,
+		a.create_user,
+		a.kb_link
+		from sys_kb a
+		where  a.state=1
+		<if test="kbTitle != null and kbTitle != ''">
+			and a.kb_title like '%'||#{kbTitle,jdbcType=VARCHAR}||'%'
+		</if>
+	</select>
+
+<select id="getKbListForApp" resultMap="BaseResultMap"
+		parameterType="java.util.HashMap">
+	select a.kb_id,
+		a.kb_title,
+		a.kb_type,
+		a.state,
+		a.create_date,
+		a.update_date,
+		a.content,
+		a.create_user,
+		a.kb_link
+		from sys_kb a
+		where  a.state=1
+		order  by   a.create_date  desc limit 0,5
+	</select>
+	<select id="getKbListById" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		a.kb_id,
+		a.kb_title,
+		a.kb_type,
+		a.state,
+		a.create_date,
+		a.update_date,
+		a.create_user,
+		a.content,
+		a.kb_link
+		from sys_kb a
+		where
+		a.kb_id = #{kbId,jdbcType=INTEGER}
+	</select>
+
+	<update id="updateSysKbStateById" parameterType="java.util.HashMap">
+		update sys_kb
+		set state = #{state,jdbcType=INTEGER},
+		update_user = #{updateUser,jdbcType=VARCHAR},
+		update_date = #{updateDate,jdbcType=TIMESTAMP}
+		where kb_id = #{kbId,jdbcType=INTEGER}
+	</update>
+</mapper>

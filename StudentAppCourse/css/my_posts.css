@@ -1,0 +1,160 @@
+/*导航栏*/
+
+header {
+	background: #1da9f6 !important;
+}
+
+
+/*标题*/
+
+
+.mui-title {
+	color: #FFFFFF;
+}
+
+
+#pullrefresh {
+	margin-top: 1px;
+}
+.mui-scroll-wrapper {
+    position: absolute;
+    z-index: 2;
+    top: 1px;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+
+.mui-icon{
+  font-size: 12px;
+  margin-right: 2px;
+}
+
+
+.post-title {
+	/*height:24px;*/
+	line-height: 2.4rem;
+	font-size: 1.2rem;
+	vertical-align: middle;
+	/*padding-right: 4.2rem;*/
+	text-overflow: ellipsis !important;
+	white-space: nowrap;
+	overflow: hidden;
+	width: 99%;
+	/*position: relative;*/
+
+}
+
+.p-title {
+	/*width: 85%;*/
+	/*display: inline-block;*/
+	/*float: left;*/
+}
+
+.dot {
+	/*max-width: 40px;*/
+	/*max-width: 10%;*/
+	min-width: 16px;
+	/*width: 1.8rem;*/
+	height: 16px;
+	line-height: 16px;
+	font-size: 1.0rem;
+	background: #FF0000;
+	color: #FFFFFF;
+	border-radius: 8px;
+	text-align: center;
+	/*padding-left: 2px;
+	padding-right: 2px;*/
+	margin: auto 0;
+	/*margin-top: 4px;*/
+	display: inline-block;
+	/*position: absolute;*/
+	/*right: 2px;*/
+	/*width: 2.1rem;*/
+}
+
+.dot-hidden {
+	display: none;
+}
+
+.dot-box {
+	vertical-align: middle;
+}
+
+p span {
+	text-align: right!important;
+}
+
+
+
+.listright{
+  text-align: right;
+}
+
+/*发布人*/
+.name {
+	font-size: 1.0rem;
+	margin-right: 2px;
+}
+
+/*发布时间*/
+.time{
+	font-size: 1.0rem;
+}
+
+/*发布内容*/
+.content {
+	font-size: 1.0rem;
+}
+
+.mui-icon{
+	font-size: 1.0rem;
+	margin-right: 10px;
+}
+
+.gz{
+	
+}
+
+/*关注人数*/
+#gzN{
+	font-size: 1.0rem;
+	margin-left: 5px;
+	margin-right: 10px;
+}
+
+/*回复人数*/
+.pl{
+	font-size: 1.0rem;
+}
+/*关注*/
+.icon-guanzhu1{
+	color:#e30177;
+}
+.iconfont{
+ font-size: 1.0rem !important;
+}
+.icon-shenheweitongguo{
+	color: #FC3502;
+	width: 4.0rem;
+	height: auto;
+	position: absolute;
+	right: 2.0rem;
+	display: inline-block;
+	line-height: 5.0rem;
+	font-size:4.0rem !important ;
+	opacity: 0.9;
+}
+.icon-shenhezhong{
+	color: #FC3502;
+	width: 4.0rem;
+	height: auto;
+	position:absolute;
+	right: 2.0rem;
+	display: inline-block;
+	line-height: 5.0rem;
+	font-size:5.0rem !important ;
+	opacity: 0.7;
+}

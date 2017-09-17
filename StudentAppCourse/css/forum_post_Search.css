@@ -1,0 +1,96 @@
+/*社区问题搜索css*/
+
+/*定义默认placeholder的窗口宽度和字体颜色*/
+#home-header .mui-search .mui-placeholder {
+	width: 100%;
+	/*	padding: 6px 0px 0px 0px;*/
+	color: #fff;
+}
+#home-header .mui-search .mui-placeholder .mui-icon {
+	color: #fff;
+}
+#home-header {
+	background: #1da9f6;
+}
+#search_container {
+	height: 44px;
+}
+#search_keyword {
+	width: 80%;
+	height: 30px;
+	line-height: 30px;
+	margin-top: 7px;
+	margin-bottom: 7px;
+	margin-left: 0px;
+	background-color: #2AB5F0;
+	color: #ffffff;
+	border: 0px;
+}
+#search_keyword .mui-placeholder {
+	color: #fff;
+}
+input::-webkit-input-placeholder {
+	color: #FFFFFF;
+}
+.mui-table-view-cell {
+	margin-top: -5px;
+	padding-bottom: 1px;
+}
+
+.mui-table-view-cell:after {
+	margin-right: 10px;
+}
+/*标题*/
+.title {
+	color: #000000;
+	font-size: 1.2rem;
+	font-weight: normal;
+}
+
+.listright{
+  text-align: right;
+}
+
+/*发布人*/
+.staff {
+	font-size: 1.0rem;
+	margin-right: 10px;
+}
+
+/*发布时间*/
+.shijan{
+	font-size: 1.0rem;
+}
+
+/*发布内容*/
+.content {
+	font-size: 1.0rem;
+}
+
+.mui-icon{
+	font-size: 1.0rem;
+	margin-right: 10px;
+}
+
+.gz{
+	
+}
+
+/*关注人数*/
+.gzN{
+	font-size: 1.0rem;
+	margin-left: 5px;
+	margin-right: 10px;
+}
+
+/*回复人数*/
+.pl{
+	font-size: 1.0rem;
+}
+/*关注*/
+.icon-guanzhu1{
+	color:#e30177;
+}
+.iconfont{
+ font-size: 1.0rem !important;
+}

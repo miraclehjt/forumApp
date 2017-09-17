@@ -1,0 +1,228 @@
+html, body {
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	overflow: hidden;
+}
+
+.mui-content {
+	height: 100%;
+	overflow: auto;
+}
+
+#reply_main_view {
+	height: 100%;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+}
+
+.postContent {
+	
+}
+
+.line_horizontal{
+	height: 1px;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #AAAAAA;
+	margin-left: 8px;
+	margin-right: 8px;
+}
+
+/*问题标题*/
+.post_title{
+	font-size: 1.8rem;
+	margin: 20px 10px;
+	word-break: break-all;
+	word-wrap: break-word;
+}
+/*问题内容*/
+.post_Con{
+	margin: 20px 10px;
+	color: #000000;
+	word-break: break-all;
+	word-wrap: break-word;
+}
+/*知识内容*/
+.post_kb_content{
+	display: none;
+	margin: 20px 10px;
+}
+/*关注*/
+.gz{
+	
+	text-align: right;
+}
+/*问题发布者的信息*/
+.user_info1{
+	margin-left: 10px;
+}
+
+.staff_head {
+	width: 32px;
+	height: 32px;
+	border-radius: 20px;
+}
+
+#staff_time {
+	display: inline-block;
+}
+
+/*问题发布者姓名*/
+#staff{
+	margin-left: 8px;
+	margin-bottom: 0px;
+	text-align: left;
+	vertical-align: middle;
+	color: #29538F;
+	font-size: 1.4rem;
+}
+/*问题发布的时间*/
+#create_time{
+	margin-left: 8px;
+	margin-bottom: 0px;
+	text-align: left;
+	vertical-align: middle;
+	color: #AAAAAA;
+	font-size: 1.2rem;
+}
+/*关注*/
+.gz{
+	float: right;
+	height: 30px;
+	margin-right: 10px;
+}
+.gz #zhan1 p{
+	font-size: 1.2rem;
+}
+.gz #zhan1 span{
+	font-size: 2.0rem;
+	margin-right: 15px;
+}
+
+#zhan{
+	float: right;
+}
+
+#reply_list_view {
+	color: #000000;
+	padding-bottom: 60px;
+}
+
+.toDebate {
+	height: 24px;
+	line-height: 24px;
+	float: right;
+	font-size: 12px;
+	color: #29538F;
+}
+
+.reply_view {
+	margin-top: 16px;
+	margin-bottom: 16px;
+	/*margin-left: 16px;*/
+	/*margin-right: 16px;*/
+}
+.replyp {
+	list-style-type: none;
+	/*margin-top: 16px;
+	margin-bottom: 16px;*/
+	position: relative;
+}
+
+.reply_debate_view {
+	margin-top: 16px;
+	margin-bottom: 16px;
+	margin-left: 32px;
+	margin-right: 16px;
+}
+
+.user_info {
+	
+}
+
+.user_head {
+	float: left;
+	width: 24px;
+	height: 24px;
+	vertical-align: middle;
+	border-radius: 20px;
+}
+
+.user_name {
+	height: 24px;
+	line-height: 24px;
+	margin-left: 8px;
+	display: inline-block;
+	vertical-align: middle;
+	color: #29538F;
+	font-size: 12px;
+}
+/*回复内容*/
+.reply_content {
+	margin-left: 32px;
+	margin-top: 4px;
+	font-size: 14px;
+}
+/*回复时间*/
+.reply_date {
+	margin-left: 32px;
+	margin-top: 4px;
+	font-size: 12px;
+	color: #A2A8B4;
+}
+/*回复类型*/
+.reply_type {
+	margin-left: 8px;
+	font-size: 12px;
+	color: #A2A8B4;
+}
+
+#reply_content_view {
+	position: fixed;
+	background: #e8e8e8;
+	bottom: 0px;
+	width: 100%;
+	height: 60px;
+	line-height: 60px;
+}
+
+#postReplyContent{
+	display: inline-block;
+	width: 70%;
+	margin-left: 16px;
+}
+
+#button_view {
+	display: inline-block;
+	height: 60px;
+	line-height: 60px;
+	width: 24%;
+	text-align: right;
+}
+
+#btnSend{
+	vertical-align: middle;
+	margin-right: 16px;
+}
+/**
+ * 关注图标
+ */
+.icon-guanzhu1{
+	color:#e30177;
+}
+.icon-guanzhu{
+	color:#e30177;
+}
+#stars{
+	margin-right: 1.0rem;
+}
+
+#mask {
+	width: 40px;
+	height: auto;
+	position: absolute;
+	top: 2px;
+	right: 50px;
+	display: inline-block;
+}

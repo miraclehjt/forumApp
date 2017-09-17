@@ -1,0 +1,77 @@
+/*定义公用样式*/
+
+
+/*定义媒体查询字体标准*/
+
+html {
+	font-size: 62.5%
+}
+
+@media screen and (min-width:375px) {
+	html {
+		font-size: 73.24%
+	}
+}
+
+
+@media screen and (min-width:414px){
+    html{font-size:80.86%}
+}
+
+/*
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (orientation: portrait) {
+	html {
+		font-size: 73.24% 
+	}
+}
+*/
+@media screen and (min-width:481px) {
+	html {
+		font-size: 94%
+	}
+}
+
+@media screen and (min-width:561px) {
+	html {
+		font-size: 109%
+	}
+}
+
+@media screen and (min-width:641px) {
+	html {
+		font-size: 125%
+	}
+}
+
+
+/*通用白色背景*/
+
+.public-white-bgcolor {
+	background: #FFFFFF;
+}
+
+.public-blue-bgcolor {
+	background: #1da9f6 !important;
+}
+
+.public-gray-bgcolor {
+	background: #e8e8e8;
+}
+
+
+/*通用白色字体*/
+
+.public-white-color {
+	color: #fff;
+}
+
+
+/*span通用Inline-block样式*/
+
+.public-span-inblock {
+	display: inline-block;
+}
+
+.clear-both {
+	clear: both;
+}

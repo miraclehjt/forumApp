@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chenzl.app.mappers.backend.fourm.SysForumPostReplyMapper" >
+  <resultMap id="BaseResultMap" type="com.chenzl.app.entity.SysForumPostReply" >
+    <id column="post_reply_id" property="postReplyId" jdbcType="INTEGER" />
+    <result column="post_id" property="postId" jdbcType="INTEGER" />
+    <result column="post_reply_content" property="postReplyContent" jdbcType="VARCHAR" />
+    <result column="debate_num" property="debateNum" jdbcType="INTEGER" />
+    <result column="reply_is_new" property="replyIsNew" jdbcType="INTEGER" />
+    <result column="new_debate_num" property="newDebateNum" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="DATE" />
+    <result column="update_date" property="updateDate" jdbcType="DATE" />
+    <result column="create_date_str" property="createDateStr" jdbcType="VARCHAR" />
+    <result column="sticky" property="sticky" jdbcType="DECIMAL" />
+  </resultMap>
+      
+      <resultMap id="BaseResultBeanMap" type="com.chenzl.app.bean.app.ForumPostReply">
+		<id column="post_reply_id" property="postReplyId" jdbcType="INTEGER" />
+		<result column="post_id" property="postId" jdbcType="INTEGER" />
+		<result column="post_reply_content" property="postReplyContent" jdbcType="VARCHAR" />
+		<result column="reply_is_new" property="replyIsNew" jdbcType="INTEGER" />
+		<result column="debate_num" property="debateNum" jdbcType="INTEGER" />
+		<result column="new_debate_num" property="newDebateNum" jdbcType="INTEGER" />
+		<result column="state" property="state" jdbcType="INTEGER" />
+		<result column="create_user" property="createUser" jdbcType="VARCHAR" />
+		<result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+		<result column="create_date_str" property="createDateStr" jdbcType="VARCHAR" />
+		<result column="user_portrait" property="userPortrait" jdbcType="VARCHAR" />
+		<result column="sticky" property="sticky" jdbcType="DECIMAL" />
+	</resultMap>
+      <update id="modifyPostReplyContent">
+  		update sys_forum_post_reply set POST_REPLY_CONTENT=#{content,jdbcType=VARCHAR} where post_reply_id=#{id,jdbcType=INTEGER}
+  	</update>
+  	
+  	<update id="stickyPostReply" parameterType="java.lang.Integer">
+ 		update sys_forum_post_reply set sticky=1 where post_reply_id=#{postReplyId,jdbcType=INTEGER}
+ 	</update>
+ 	
+ 	<update id="notStickyPostReplyOther" parameterType="java.util.HashMap">
+ 		update sys_forum_post_reply set sticky=0 where post_reply_id!=#{postReplyId,jdbcType=INTEGER} and post_id = #{postId,jdbcType=INTEGER}
+ 	</update>
+ 	
+ 	<select id="getSysForumPostReplyById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select a.post_reply_id,
+		a.post_id,
+		a.post_reply_content,
+		a.reply_is_new,
+		a.debate_num,
+		a.new_debate_num,
+		a.state,
+		a.create_user,
+		a.update_user,
+		a.create_date,
+		a.update_date,
+		a.sticky
+		from sys_forum_post_reply a
+		where 1 = 1
+		  and a.state = 1
+		  and a.post_reply_id = #{postReplyId,jdbcType=INTEGER}
+	</select>
+	
+	 <update id="updatePostReply" parameterType="com.chenzl.app.entity.SysForumPostReply">
+ 		update sys_forum_post_reply set POST_ID=#{postId,jdbcType=INTEGER},POST_REPLY_CONTENT=#{postReplyContent,jdbcType=VARCHAR},STATE=#{state,jdbcType=INTEGER},CREATE_USER=#{createUser,jdbcType=VARCHAR},UPDATE_USER=#{updateUser,jdbcType=VARCHAR},CREATE_DATE=#{createDate,jdbcType=TIMESTAMP},UPDATE_DATE=#{updateDate,jdbcType=TIMESTAMP},REPLY_IS_NEW=#{replyIsNew,jdbcType=INTEGER},NEW_DEBATE_NUM=#{newDebateNum,jdbcType=INTEGER},DEBATE_NUM=#{debateNum,jdbcType=INTEGER},STICKY=#{sticky,jdbcType=INTEGER} where post_reply_id=#{postReplyId,jdbcType=INTEGER}
+ 	</update>
+ 	
+ 	  <update id="postReplyReaded" parameterType="java.lang.Integer">
+    update sys_forum_post_reply
+       set reply_is_new = 0
+     where post_id = #{postId, jdbcType=INTEGER}
+  </update>
+  
+    <update id="newDebateNumReset" parameterType="java.util.HashMap">
+    update sys_forum_post_reply
+       set new_debate_num = 0
+     where post_reply_id = #{postReplyId,jdbcType=INTEGER}
+       and create_user = #{userId, jdbcType=VARCHAR}
+  </update>
+  
+  	<select id="getCctForumPostReplyById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select a.post_reply_id,
+		a.post_id,
+		a.post_reply_content,
+		a.reply_is_new,
+		a.debate_num,
+		a.new_debate_num,
+		a.state,
+		a.create_user,
+		a.update_user,
+		a.create_date,
+		a.update_date,
+		a.sticky,
+		date_format(a.create_date,'%Y-%m-%d %H:%i:%S') as CREATE_DATE_STR
+		from sys_forum_post_reply a
+		where 1 = 1
+		  and a.state = 1
+		and a.post_reply_id = #{postReplyId,jdbcType=INTEGER}
+	</select>
+	  <update id="newDebateNumAdd" parameterType="java.lang.Integer">
+    update sys_forum_post_reply
+       set new_debate_num = 	IFNULL(new_debate_num,0) + 1
+     where post_reply_id = #{postReplyId,jdbcType=INTEGER}
+  </update>
+  
+   <update id="debateNumAdd" parameterType="java.lang.Integer">
+    update sys_forum_post_reply
+       set debate_num = IFNULL(debate_num,0) + 1
+     where post_reply_id = #{postReplyId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="getCctForumPostReplyByMap" resultMap="BaseResultMap"
+		parameterType="java.util.HashMap">
+		select a.post_reply_id,
+		a.post_id,
+		a.post_reply_content,
+		a.reply_is_new,
+		a.debate_num,
+		a.new_debate_num,
+		a.state,
+		a.create_user,
+		a.update_user,
+		a.create_date,
+		a.update_date,
+		a.sticky,
+		date_format(a.create_date,'%Y-%m-%d %H:%i:%S') as CREATE_DATE_STR
+		from sys_forum_post_reply a
+		where 1 = 1
+		<if test="postId != ''">
+			and a.post_id = #{postId,jdbcType=INTEGER}
+		</if>
+		<if test="state != ''">
+			and a.state = #{state,jdbcType=INTEGER}
+		</if>
+		order by a.create_date asc
+	</select>
+	
+	<select id="appQueryPostReplyList" resultMap="BaseResultBeanMap" parameterType="java.util.HashMap">
+		select
+		a.post_reply_id,
+		a.post_id,
+		a.post_reply_content,
+		a.reply_is_new,
+		a.debate_num,
+		a.new_debate_num,
+		a.state,
+		a.create_user,
+		a.update_user,
+		a.create_date,
+		a.update_date,
+		a.sticky,
+		b.user_portrait,
+		date_format(a.create_date,'%Y-%m-%d %H:%i:%S') as CREATE_DATE_STR
+		from sys_forum_post_reply a,sys_user b,
+		sys_forum_post p
+		where a.create_user=b.user_id
+		  and a.post_id = p.post_id
+		  <if test="state!=null and state!=''">
+		      and a.state=#{state,jdbcType=INTEGER}
+		  </if>
+		  <if test="postId!=null and postId!=''">
+		     and a.post_id = #{postId,jdbcType=INTEGER}
+		  </if>
+		order by a.sticky desc,a.create_date asc
+	</select>
+</mapper>

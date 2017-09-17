@@ -1,0 +1,148 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context/spring-context-4.0.xsd
+						http://www.springframework.org/schema/aop 
+						http://www.springframework.org/schema/aop/spring-aop-4.0.xsd 
+						http://www.springframework.org/schema/tx 
+						http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+						http://www.springframework.org/schema/util 
+						http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+	<!-- 扫描包 -->
+	<context:component-scan base-package="com.chenzl.app" />
+
+	<!-- customRealm -->
+	<bean id="customRealm" class="com.chenzl.app.shiro.CustomRealm"/>
+
+	<!-- redisSessionDAO -->
+	<bean id="redisSessionDAO" class="com.chenzl.app.shiro.RedisSessionDAO">
+	    <!--<property name="redisManager" ref="redisManager" />-->
+	</bean>
+
+	<!-- sessionManager -->
+	<bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+	    <property name="sessionDAO" ref="redisSessionDAO" />
+	</bean>
+	
+	<!-- cacheManager -->
+	<bean id="cacheManager" class="com.chenzl.app.shiro.RedisCacheManager">
+	    <!--<property name="redisManager" ref="redisManager" />-->
+	</bean>
+
+	<!-- securityManager安全管理器 -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="customRealm" />
+		<property name="sessionMode" value="http"/>
+		<property name="cacheManager" ref="cacheManager" />
+		<property name="sessionManager" ref="sessionManager" />
+	</bean>
+	
+	<!-- 用户授权信息Cache -->
+	<!--
+	<bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager"/>
+	--> 
+
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager" />
+		<!-- loginUrl认证提交地址，如果没有认证将会请求此地址进行认证，请求此地址将由formAuthenticationFilter进行表单认证 -->
+		<property name="loginUrl" value="/manages/page/login.do" />
+		<!-- 认证成功统一跳转到first.action，建议不配置，shiro认证成功自动到上一个请求路径 -->
+		<property name="successUrl" value="/manages/page/index.do" />
+		<!-- 通过unauthorizedUrl指定没有权限操作时跳转页面 -->
+		<property name="unauthorizedUrl" value="/refuse.jsp" />
+		<!-- 过虑器链定义，从上向下顺序执行，一般将/**放在最下边 -->
+		<!-- 下面value值的第一个'/'代表的路径是相对于HttpServletRequest.getContextPath()的值来的 -->
+		<!-- anon：它对应的过滤器里面是空的,什么都没做,这里.do和.jsp后面的*表示参数,比方说login.jsp?main这种 -->
+		<!-- authc：该过滤器下的页面必须验证后才能访问,它是Shiro内置的一个拦截器org.apache.shiro.web.filter.authc.FormAuthenticationFilter -->
+		<property name="filterChainDefinitions">
+			<value>
+				<!-- 应用首页 -->
+				/manages/assets/** = anon
+				/official_website.html = anon
+				/choose_download.html = anon
+				/download/** = anon
+				<!-- 静态资源 -->
+				/images/** = anon
+				/css/** = anon
+				/js/** = anon
+				/libs/** = anon
+				/assets/** = anon
+				<!-- 静态资源 -->
+				/images/** = anon
+				/css/** = anon
+				/js/** = anon
+				/libs/** = anon
+				/assets/** = anon
+				<!-- 请求 logout.action地址，shiro去清除session -->
+				/manages/logout.do = logout
+				<!-- 登录页面 -->
+				/manages/login.do = anon
+				<!-- 登录请求 -->
+				/manages/login/loginManage.do = anon
+				<!-- 登出请求 -->
+				/manages/login/logout.do = anon
+				<!-- /** = authc 所有url都必须认证通过才可以访问 -->
+				/forum/**=anon
+				/manages/forumPost/**=anon
+				/manages/forum/**=anon
+				/manages/learn/**=anon
+				/manages/searchKeyword/**=anon
+				/manages/news/**=anon
+				/app/login/**=anon
+				/app/news/**=anon
+				/app/reg/**=anon
+				<!-- APP接口配置为匿名访问 开始 -->
+				/login/** = anon
+				
+				/staff/** = anon
+			   /manages/**=anon
+				/forum/** = anon
+			
+			
+				<!-- 应用下载 -->
+				/download/** = anon
+				/download.html = anon
+				<!-- 应用更新 -->
+				/update/** = anon
+				<!-- 二维码生成 -->
+				/qrcode/** = anon
+				<!-- 轮播图接口 -->
+				/manages/slider/** = anon
+				<!-- 新业务通关 -->
+				/business/** = anon
+				<!-- 应用消息接口 -->
+				/messages/** = anon
+				/app/kbList/**=anon
+				/app/forum/**=anon
+				/app/forumpost/**=anon
+				/forumpoststar/**=anon
+				<!-- APP接口配置为匿名访问 结束 -->
+				/page/** = anon
+				/druid/** = anon
+				/** = authc
+				<!-- /** = anon所有url都可以匿名访问 -->
+				<!--
+				/** = anon
+				-->
+			</value>
+		</property>
+	</bean>
+
+	<!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+		
+	<!-- 开启Shiro的注解(如@RequiresRoles,@RequiresPermissions),需借助SpringAOP扫描使用Shiro注解的类,并在必要时进行安全逻辑验证 -->
+	<!-- 配置以下两个bean即可实现此功能 -->
+	<!-- Enable Shiro Annotations for Spring-configured beans. Only run after the lifecycleBeanProcessor has run -->
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor">
+		<property name="proxyTargetClass" value="true"/>
+	</bean>
+	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager"/>
+	</bean>
+</beans>

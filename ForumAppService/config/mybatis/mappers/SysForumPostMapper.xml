@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chenzl.app.mappers.backend.fourm.SysForumPostMapper" >
+  <resultMap id="BaseResultMap" type="com.chenzl.app.entity.SysForumPost" >
+    <id column="post_id" property="postId" jdbcType="INTEGER" />
+    <result column="category_id" property="categoryId" jdbcType="INTEGER" />
+    <result column="post_title" property="postTitle" jdbcType="VARCHAR" />
+    <result column="post_type" property="postType" jdbcType="CHAR" />
+    <result column="kb_id" property="kbId" jdbcType="INTEGER" />
+    <result column="kb_title" property="kbTitle" jdbcType="VARCHAR" />
+    <result column="area_id" property="areaId" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="reply_num" property="replyNum" jdbcType="INTEGER" />
+    <result column="new_reply_num" property="newReplyNum" jdbcType="INTEGER" />
+    <result column="star_num" property="starNum" jdbcType="INTEGER" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="DATE" />
+    <result column="update_date" property="updateDate" jdbcType="DATE" />
+    <result column="audit_state" property="auditState" jdbcType="INTEGER" />
+    <result column="audit_user" property="auditUser" jdbcType="VARCHAR" />
+    <result column="audit_comment" property="auditComment" jdbcType="VARCHAR" />
+    <result column="audit_date" property="auditDate" jdbcType="DATE" />
+    <result column="post_content" property="postContent" jdbcType="VARCHAR" />
+     <result column="create_date_str" property="createDateStr" jdbcType="VARCHAR" />
+     <result column="time" property="time" jdbcType="VARCHAR" />
+     <result column="new_debate_num" property="newDebateNum" jdbcType="INTEGER" />
+    <result column="portrait" property="portrait" jdbcType="VARCHAR" />
+    <result column="click_num" property="clickNum" jdbcType="INTEGER" />
+  </resultMap>
+ 
+   <resultMap id="RecommendPostResultMap"  type="com.chenzl.app.bean.backend.forum.RecommendPost" >
+    <id column="POST_ID" property="postId" jdbcType="INTEGER" />
+    <result column="CATEGORY_ID" property="categoryId" jdbcType="INTEGER" />
+     <result column="CATEGORY_NAME" property="categoryName" jdbcType="VARCHAR" />
+    <result column="POST_TITLE" property="postTitle" jdbcType="VARCHAR" />
+    <result column="POST_CONTENT" property="postContent" jdbcType="VARCHAR" />
+    <result column="POST_TYPE" property="postType" jdbcType="INTEGER" />
+    <result column="KB_ID" property="kbId" jdbcType="INTEGER" />
+    <result column="KB_TITLE" property="kbTitle" jdbcType="VARCHAR" />
+    <result column="AREA_ID" property="areaId" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="INTEGER" />
+    <result column="STAR_NUM" property="starNum" jdbcType="INTEGER" />
+    <result column="CREATE_USER" property="createUser" jdbcType="VARCHAR" />
+    <result column="UPDATE_USER" property="updateUser" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="AUDIT_STATE" property="auditState" jdbcType="DECIMAL" />
+    <result column="AUDIT_USER" property="auditUser" jdbcType="VARCHAR" />
+    <result column="AUDIT_COMMENT" property="auditComment" jdbcType="VARCHAR" />
+    <result column="AUDIT_DATE" property="auditDate" jdbcType="TIMESTAMP" />
+    <result column="RECOMMEND" property="recommend" jdbcType="DECIMAL" />
+    
+  </resultMap>
+  
+  <resultMap id="ForumPostBackendMap" type="com.chenzl.app.bean.backend.forum.ForumPostBackend">
+  	 <result column="FP_ID" property="fpId" jdbcType="INTEGER" />
+  	<result column="USER_NAME" property="userName" jdbcType="VARCHAR"/>
+  	<result column="PORTRAIT" property="userPortrait" jdbcType="VARCHAR" />
+   	<result column="POST_CONTENT" property="postContent" jdbcType="VARCHAR" />
+   	<result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+   		<result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+   	<result column="STICKY" property="sticky" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <select id="appQueryForumPostList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        select a.post_id,
+               a.category_id,
+               a.post_title,
+               a.post_type,
+               a.post_content,
+               a.kb_id,
+               a.kb_title,
+               a.area_id,
+               a.state,
+               a.new_reply_num,
+               a.reply_num,
+               a.star_num,
+               a.create_user,
+               a.create_date,
+               a.update_date,
+               a.audit_state,
+               a.audit_user,
+               a.audit_comment,
+               a.audit_date,
+               date_format(a.create_date, 'yyyy-mm-dd hh24:mi:ss') as CREATE_DATE_STR,
+               (select count(1) from sys_forum_post_click c where c.post_id = a.post_id) AS CLICK_NUM <!-- 问题点击量 -->
+           from sys_forum_post a, sys_forum_category b
+         where 1 = 1
+         and a.category_id = b.category_id
+         <if test="categoryId != null">
+            and a.category_id = #{categoryId,jdbcType=INTEGER}
+         </if>
+              and a.audit_state = 1
+            and a.state = 1
+         <if test="postType != null">
+            and a.post_type = #{postType,jdbcType=INTEGER}
+         </if>
+         <if test="postTitle != null">
+            and a.post_title like CONCAT('%',#{postTitle},'%')
+         </if>
+         <if test="userId != null">
+            and a.create_user = #{userId,jdbcType=VARCHAR}
+         </if>
+	</select>
+  
+        <select id="queryForumPostForPage" resultMap="RecommendPostResultMap"  parameterType="java.util.HashMap">
+      select a.POST_ID,
+             a.CATEGORY_ID,
+             b.CATEGORY_NAME,
+             a.POST_TITLE,
+             a.POST_CONTENT,
+             a.POST_TYPE,
+             a.KB_ID,
+             a.KB_TITLE,
+             a.AREA_ID,
+             a.STATE,
+             a.STAR_NUM,
+             a.CREATE_USER,
+             a.UPDATE_USER,
+            a.CREATE_DATE,
+             a.UPDATE_DATE,
+             a.AUDIT_STATE,
+             a.AUDIT_USER,
+             a.AUDIT_COMMENT,
+            a.AUDIT_DATE,
+             (select count(1) from sys_forum_recommend_post b where a.post_id = b.post_id) RECOMMEND,
+             (select count(1) from sys_forum_post_click c where c.post_id = a.post_id) AS CLICK_NUM 
+      from sys_forum_post a, sys_forum_category b
+     where a.AUDIT_STATE = 1 
+       and a.STATE = 1
+       and a.CATEGORY_ID = b.CATEGORY_ID
+      <!-- <if test="areaId!=null and areaId!=''" >
+       and a.area_id like '%'||#{areaId,jdbcType=VARCHAR}||'%'
+      </if> -->
+      <if test="searchKeyword !=null and searchKeyword !='' ">
+       and a.post_title LIKE  CONCAT('%', #{searchKeyword}, '%') 
+      </if>
+     order by a.create_date desc
+  </select>
+  
+  <select id="getAreas" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+		select distinct
+		       area_id,
+		       area_name 
+		  from sys_area
+		 order by area_id asc
+	</select>
+	
+	<select id="getAreaById" resultType="java.util.HashMap" parameterType="java.lang.String">
+		select distinct
+		       area_id,
+		       area_name 
+		  from sys_area
+	where	 area_id = #{areaId,jdbcType=VARCHAR}
+		 order by area_id asc
+	</select>
+	
+	<!-- 查询问题详情 -->
+	 <select id="getForumPostById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+   	select * from sys_forum_post where post_id=#{postId,jdbcType=INTEGER}
+  </select>
+
+<!-- 评论 -->  
+  <select id="getPostRepliesByPostId" resultMap="ForumPostBackendMap" parameterType="java.lang.Integer">
+  	select a.user_name,b.user_portrait,c.post_reply_id as fp_id,c.post_reply_content as post_content,c.create_date,c.sticky from sys_user a,sys_user b,sys_forum_post_reply c
+  	where c.post_id=#{postId,jdbcType=INTEGER} and c.state=1 and c.create_user=a.user_id and c.create_user=b.user_id  order by sticky desc,create_date asc
+  </select>
+  
+  <!-- //评论回复 -->
+    <select id="getReplyDebatesByReplyId" resultMap="ForumPostBackendMap" parameterType="java.lang.Integer">
+  	select a.user_name,b.user_portrait,c.post_reply_debate_id as fp_id,c.post_reply_debate_content as post_content,c.create_date from sys_user a,sys_user b,sys_forum_reply_debate c
+  	where c.post_reply_id=#{replyId,jdbcType=INTEGER} and c.state=1 and c.create_user=a.user_id and c.create_user=b.user_id
+  </select> 
+  
+   <update id="updateForumPost" parameterType="com.chenzl.app.entity.SysForumPost">
+  	update sys_forum_post set CATEGORY_ID=#{categoryId,jdbcType=INTEGER},POST_TITLE=#{postTitle,jdbcType=VARCHAR},POST_CONTENT=#{postContent},POST_TYPE=#{postType,jdbcType=INTEGER},KB_ID=#{kbId,jdbcType=INTEGER},AREA_ID=#{areaId,jdbcType=VARCHAR},STATE=#{state,jdbcType=INTEGER},STAR_NUM=#{starNum,jdbcType=INTEGER},CREATE_USER=#{createUser,jdbcType=VARCHAR},UPDATE_USER=#{updateUser,jdbcType=VARCHAR},CREATE_DATE=#{createDate,jdbcType=TIMESTAMP},UPDATE_DATE=#{updateDate,jdbcType=TIMESTAMP},AUDIT_STATE=#{auditState,jdbcType=INTEGER},AUDIT_USER=#{auditUser,jdbcType=VARCHAR},AUDIT_COMMENT=#{auditComment,jdbcType=VARCHAR},AUDIT_DATE=#{auditDate,jdbcType=TIMESTAMP},NEW_REPLY_NUM=#{newReplyNum,jdbcType=INTEGER},REPLY_NUM=#{replyNum,jdbcType=INTEGER},KB_TITLE=#{kbTitle,jdbcType=VARCHAR}
+  	where POST_ID = #{postId,jdbcType=INTEGER}
+  </update>
+  
+   <update id="modifyPost" parameterType="java.util.HashMap">
+  	update sys_forum_post set 
+  	<if test="postTitle != null and postTitle != ''">
+  		post_title=#{postTitle,jdbcType=VARCHAR}
+  	</if>
+  	<if test="postContent != null and postContent != ''">
+  		post_content=#{postContent,jdbcType=VARCHAR}
+  	</if>
+  	where POST_ID = #{postId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="appQueryForumPostById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+      select a.post_id,
+             a.category_id,
+             a.post_title,
+             a.post_type,
+             a.post_content,
+             a.kb_id,
+             a.kb_title,
+             a.area_id,
+             a.state,
+             a.new_reply_num,
+             a.reply_num,
+             a.star_num,
+             a.create_user,
+             a.create_date,
+             a.update_date,
+             a.audit_state,
+             a.audit_user,
+             a.audit_comment,
+             a.audit_date,
+             d.user_portrait,
+             date_format(a.create_date, '%y-%m-%d %h:%m:%s') as CREATE_DATE_STR,
+             (select count(1) from sys_forum_post_click c where c.post_id = a.post_id) AS CLICK_NUM <!-- 问题点击量 -->
+         from sys_forum_post a, sys_forum_category b, sys_user d
+       where a.create_user=d.user_id
+       and a.category_id = b.category_id
+       and a.post_id =#{postId,jdbcType=INTEGER}
+	</select>
+	 <update id="newReplyNumReset" parameterType="java.util.HashMap">
+    update sys_forum_post
+       set new_reply_num = 0
+     where post_id = #{postId, jdbcType=INTEGER}
+       and create_user = #{userId, jdbcType=VARCHAR}
+  </update>
+  
+  <select id="getRecommendPosts" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+              select a.category_id,
+                     a.post_id,
+                     a.post_title,
+                     a.post_type,
+                     a.post_content,
+                     a.kb_id,
+                     a.area_id,
+                     a.state,
+                     a.new_reply_num,
+                     a.reply_num,
+                     a.star_num,
+                     a.create_user,
+                     IFNULL(a.CREATE_DATE,STR_TO_DATE('1970-9-27','%Y-%m-%d')) as CREATE_DATE,
+                     IFNULL(a.UPDATE_DATE,STR_TO_DATE('1970-9-27','%Y-%m-%d')) as UPDATE_DATE,
+                     a.audit_state,
+                     a.audit_user,
+                     a.audit_comment,
+                     IFNULL(a.AUDIT_DATE,STR_TO_DATE('1970-9-27','%Y-%m-%d')) as AUDIT_DATE,
+                     date_format(a.create_date, '%Y-%m-%d %H:%i:%S') as CREATE_DATE_STR,
+                      (select count(1) from sys_forum_post_click c where c.post_id = a.post_id) AS CLICK_NUM <!-- 问题点击量 -->
+  					from sys_forum_post a
+ 						where a.post_id in (select post_id from sys_forum_recommend_post where state=1
+							<if test="areaId !=null and areaId !='' ">
+								and area_id= #{areaId,jdbcType=VARCHAR}
+							</if> 
+  						) and audit_state=1
+  						  and state=1
+ 	</select>
+ 	<select id="getMyInitiatePosts" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+ 		select a.category_id,
+                     a.post_id,
+                     a.post_title,
+                     a.post_type,
+                     a.post_content,
+                     a.kb_id,
+                     a.area_id,
+                     a.state,
+                     a.new_reply_num,
+                     a.reply_num,
+                     a.star_num,
+                     a.create_user,
+                     IFNULL(a.CREATE_DATE,STR_TO_DATE('1970-9-27','%Y-%m-%d')) as CREATE_DATE,
+                     IFNULL(a.UPDATE_DATE,STR_TO_DATE('1970-9-27','%Y-%m-%d')) as UPDATE_DATE,
+                     a.audit_state,
+                     a.audit_user,
+                     a.audit_comment,
+                     IFNULL(a.AUDIT_DATE,STR_TO_DATE('1970-9-27','%Y-%m-%d')) as AUDIT_DATE,
+                     date_format(a.create_date, '%Y-%m-%d %H:%i:%S') as CREATE_DATE_STR,
+                      (select count(1) from sys_forum_post_click c where c.post_id = a.post_id) AS CLICK_NUM <!-- 问题点击量 -->
+                 from sys_forum_post a where a.CREATE_USER=#{userId,jdbcType=VARCHAR}  and a.state='1' order by create_date desc,new_reply_num desc
+ 		
+ 	</select>
+ 	
+ 	<select id="getMyReplyPosts" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+ 		select c.*,IFNULL( d.new_debate_num,0) as new_debate_num from (select a.category_id,
+                     a.post_id,
+                     a.post_title,
+                     a.post_type,
+                     a.post_content,
+                     a.kb_id,
+                     a.area_id,
+                     a.state,
+                     a.new_reply_num,
+                     a.reply_num,
+                     a.star_num,
+                     a.create_user,
+                     IFNULL(a.CREATE_DATE,STR_TO_DATE('1970-9-27','%Y-%M-%D')) as CREATE_DATE,
+                      IFNULL(a.UPDATE_DATE,STR_TO_DATE('1970-9-27','%Y-%M-%D')) as UPDATE_DATE,
+                     a.audit_state,
+                     a.audit_user,
+                     a.audit_comment,
+                     IFNULL(a.AUDIT_DATE,STR_TO_DATE('1970-9-27','%Y-%M-%D')) as AUDIT_DATE,
+                     date_format(a.create_date, '%Y-%m-%d %H:%i:%S') as CREATE_DATE_STR,
+                      (select count(1) from sys_forum_post_click c where c.post_id = a.post_id) AS CLICK_NUM <!-- 问题点击量 -->
+                 from sys_forum_post a where a.post_id in (select b.post_id  from sys_forum_post_reply b where b.CREATE_USER=#{userId,jdbcType=VARCHAR})) c,
+                 (select post_id,sum(new_debate_num) as new_debate_num from sys_forum_post_reply where create_user=#{userId,jdbcType=VARCHAR} group by post_id) d where c.post_id=d.post_id  and c.state='1' order by d.new_debate_num desc
+ 		
+ 	</select>
+ 	
+ 	<select id="getMyLikePosts" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+ 		select a.category_id,
+                     a.post_id,
+                     a.post_title,
+                     a.post_type,
+                     a.post_content,
+                     a.kb_id,
+                     a.area_id,
+                     a.state,
+                     a.new_reply_num,
+                     a.reply_num,
+                     a.star_num,
+                     a.create_user,
+                   IFNULL(a.CREATE_DATE,STR_TO_DATE('1970-9-27','%Y-%M-%D')) as CREATE_DATE,
+                      IFNULL(a.UPDATE_DATE,STR_TO_DATE('1970-9-27','%Y-%M-%D')) as UPDATE_DATE,
+                     a.audit_state,
+                     a.audit_user,
+                     a.audit_comment,
+                     IFNULL(a.AUDIT_DATE,STR_TO_DATE('1970-9-27','%Y-%M-%D')) as AUDIT_DATE,
+                    date_format(a.create_date, '%Y-%m-%d %H:%i:%S') as CREATE_DATE_STR,
+                      (select count(1) from sys_forum_post_click c where c.post_id = a.post_id) AS CLICK_NUM <!-- 问题点击量 -->
+                 from sys_forum_post a where a.post_id in (select post_id from sys_forum_post_star where user_id=#{userId,jdbcType=VARCHAR})  and a.state=1
+ 		
+ 	</select>
+ 	
+ 	 <select id="getNewReplyNumForMyPost" parameterType="java.util.HashMap" resultType="java.lang.Long">
+ 		
+ 		select IFNULL(new_debate_num,0)  from sys_forum_post where post_id=#{postId,jdbcType=INTEGER}
+ 		
+ 	</select>
+ 	
+ 	<select id="getNewReplyNumForMyInitiatePosts" parameterType="java.util.HashMap" resultType="java.lang.Long">
+ 		
+ 		select IFNULL(sum(new_reply_num),0)  from sys_forum_post where CREATE_USER=#{userId,jdbcType=VARCHAR} and state=1
+ 		
+ 	</select>
+ 	
+ 		<select id="getNewReplyNumForMyPostReply" parameterType="java.util.HashMap" resultType="java.lang.Long">
+ 		
+ 		select IFNULL(new_reply_num,0)  from sys_forum_post_reply where POST_REPLY_ID=#{replyId,jdbcType=INTEGER}
+ 		
+ 	</select>
+ 	
+ 	<select id="getNewReplyNumForMyReplyPosts" parameterType="java.util.HashMap" resultType="java.lang.Long">
+ 		
+ 		select IFNULL(sum(new_debate_num),0)  from sys_forum_post_reply where CREATE_USER=#{userId,jdbcType=VARCHAR} and state=1
+ 		
+ 	</select>
+ 	
+ 	<select id="getPostByStarNums" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+     select a.post_id,
+            a.category_id,
+            a.post_title,
+            a.post_type,
+            a.post_content,
+            a.kb_id,
+            a.kb_title,
+            a.area_id,
+            a.state,
+            a.new_reply_num,
+            a.reply_num,
+            a.star_num,
+            a.create_user,
+            a.create_date,
+            a.update_date,
+            a.audit_state,
+            a.audit_user,
+            a.audit_comment,
+            a.audit_date,
+            date_format(a.create_date, '%Y-%m-%d %H:%i:%S') as CREATE_DATE_STR,
+             (select count(1) from sys_forum_post_click c where c.post_id = a.post_id) AS CLICK_NUM <!-- 问题点击量 -->
+  	   from sys_forum_post a
+  	  where a.audit_state=1
+  	    and a.state=1
+  </select>
+  
+  <select id="getNewReplyNumSum" resultType="java.lang.Long" parameterType="java.util.HashMap">
+		select IFNULL(sum(new_reply_num),0) as value
+		  from sys_forum_post t
+		 where state = 1 <!-- 状态：正常 -->
+		   and audit_state = 1 <!-- 审核状态：审核通过 -->
+		   and post_type = #{postType,jdbcType=INTEGER}
+		   and create_user = #{userId,jdbcType=VARCHAR}
+	</select>
+	
+	<update id="replyNumAdd" parameterType="java.lang.Integer">
+    update sys_forum_post
+       set reply_num = IFNULL(reply_num,0) + 1
+     where post_id = #{postId,jdbcType=INTEGER}
+  </update>
+  
+      <update id="newReplyNumAdd" parameterType="java.lang.Integer">
+    update sys_forum_post
+       set new_reply_num = IFNULL(new_reply_num,0) + 1
+     where post_id = #{postId,jdbcType=INTEGER}
+  </update>
+</mapper>

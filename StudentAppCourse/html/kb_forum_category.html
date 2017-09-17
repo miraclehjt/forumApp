@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>社区版块</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/forum.css"/>
+	  <style type="text/css">
+	  	.mui-segmented-control.mui-segmented-control-inverted {
+            width: 100%;
+            border: 0;
+            border-radius: 0;
+            z-index: 1;
+        }
+	  	.btnr{
+	  		position: relative;
+	  		width: 5%;
+	  		z-index: 2;
+	  		line-height: 38px;
+	  		float: right;
+	  		color: #000000;
+	  		background-color: #EFEFF4;
+	  	}
+	  	.icon-xiangyou1{
+	  	}
+	  </style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title" style="left: 11px;">讨论社区</h1>
+			<img id="portrait" class="user_head" src="../images/head.png"/>
+			<span class="mui-icon mui-icon-search" id="forumSearch"></span>
+			<button type="button" id="my_post" class="btn">我要发帖</button>
+		</header>
+		<div class="mui-content">
+			<div id="slider" class="mui-slider mui-fullscreen">
+				<!--<div id="left_" class="btnl"><</div>-->
+				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+				
+				<div id="menus" class="mui-scroll">
+						
+						<a class="mui-control-item mui-active" id="forum_recommend_post" href="forum_recommend_post.html" categoryId="">
+							推荐
+						</a>
+						<a class="mui-control-item" id="forum_hot_post" href="forum_hot_post.html" categoryId="">
+							热贴
+						</a>
+					</div>
+					
+				</div>
+			
+			</div>
+			<div id="right_" class="btnr iconfont icon-xiangyou1"></div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/comme.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/castapp.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../libs/jquery/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/form.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

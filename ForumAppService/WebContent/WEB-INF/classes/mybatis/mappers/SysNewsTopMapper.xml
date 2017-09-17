@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chenzl.app.mappers.backend.news.SysNewsMapper">
+	<resultMap id="BaseResultMap" type="com.chenzl.app.entity.SysNews">
+		<id column="news_id" property="newsId" jdbcType="INTEGER" />
+		<result column="news_title" property="newsTitle" jdbcType="VARCHAR" />
+		<result column="news_link" property="newsLink" jdbcType="VARCHAR" />
+		<result column="news_type" property="newsType" jdbcType="INTEGER" />
+		<result column="description" property="description" jdbcType="VARCHAR" />
+		<result column="state" property="state" jdbcType="INTEGER" />
+		<result column="create_date" property="createDate" jdbcType="DATE" />
+		<result column="create_user" property="createUser" jdbcType="VARCHAR" />
+		<result column="end_date" property="endDate" jdbcType="DATE" />
+		<result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+	</resultMap>
+    <select id="queryNewsListForPage" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+      select a.news_id,
+      a.news_link,
+      a.news_type,
+      a.news_title, 
+      a.description,
+      a.state,
+      a.create_date,
+		a.create_user,
+		a.update_user,
+		a.end_date 
+      from sys_news  a where a.state=1
+      <if test="newsTitle!=null">
+       and a.news_title  like CONCAT('%',#{newsTitle},'%')
+      </if>
+    </select>
+
+	<select id="getNewsListById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+		select a.news_id,
+		a.news_title,
+		a.news_link,
+		a.news_type,
+		a.description,
+		a.state,
+		a.create_date,
+		a.create_user,
+		a.update_user,
+		a.end_date
+		from sys_news a where
+		a.news_id=#{newsId,jdbcType=INTEGER}
+	</select>
+
+	<update id="updateNewsStateById" parameterType="java.util.HashMap">
+		update sys_news
+		set state=#{state,jdbcType=INTEGER},
+		update_user=#{updateUser,jdbcType=VARCHAR},
+		end_date=#{endDate,jdbcType=TIMESTAMP}
+		where
+		news_id=#{newsId,jdbcType=INTEGER}
+	</update>
+</mapper>

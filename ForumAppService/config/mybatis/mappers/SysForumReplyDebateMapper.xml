@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chenzl.app.mappers.backend.fourm.SysForumReplyDebateMapper" >
+  <resultMap id="BaseResultMap" type="com.chenzl.app.entity.SysForumReplyDebate" >
+    <id column="post_reply_debate_id" property="postReplyDebateId" jdbcType="INTEGER" />
+    <result column="post_reply_id" property="postReplyId" jdbcType="INTEGER" />
+    <result column="post_reply_debate_content" property="postReplyDebateContent" jdbcType="VARCHAR" />
+    <result column="debate_is_new" property="debateIsNew" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="DATE" />
+    <result column="update_date" property="updateDate" jdbcType="DATE" />
+      <result column="create_date_str" property="createDateStr" jdbcType="VARCHAR" />
+  </resultMap>
+     <select id="getDebateById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select * from sys_forum_reply_debate where POST_REPLY_DEBATE_ID = #{debateId,jdbcType=INTEGER}
+	</select>
+	<update id="replyDebateReaded" parameterType="java.lang.Integer">
+    update sys_forum_reply_debate
+       set debate_is_new = 0
+     where post_reply_id = #{postReplyId,jdbcType=INTEGER}
+	</update>
+	
+	<select id="queryReplyDebateList" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select 
+		d.post_reply_debate_id,
+		d.post_reply_id,
+		d.post_reply_debate_content,
+		d.debate_is_new,
+		d.state,
+		d.create_user,
+		d.update_user,
+		d.create_date,
+		d.update_date,
+		s.user_portrait,
+		date_format(d.create_date, '%Y-%m-%d %H:%i:%S') as CREATE_DATE_STR
+		from sys_forum_reply_debate d,sys_forum_post_reply r,sys_user s
+		where d.create_user=s.user_id
+	    and d.post_reply_id=r.post_reply_id
+		and d.state=1
+	    and d.post_reply_id = #{postReplyId,jdbcType=INTEGER}
+		  order by d.create_date asc
+	</select>
+</mapper>

@@ -1,0 +1,77 @@
+#pullrefresh {
+	margin-top: 1px;
+}
+.mui-scroll-wrapper {
+    position: absolute;
+    z-index: 2;
+    top: 1px;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    width: 100%;
+}
+/*标题*/
+.title {
+	height: 1.8rem;
+	line-height: 1.8rem;
+	color: #000000;
+	font-size: 1.2rem;
+	font-weight: normal;
+}
+
+.listright{
+  text-align: right;
+}
+
+/*发布人*/
+.staff {
+	font-size: 1.0rem;
+	margin-right: 10px;
+}
+
+/*发布时间*/
+.shijan{
+	font-size: 1.0rem;
+}
+
+/*发布内容*/
+.content {
+	font-size: 1.1rem;
+}
+
+.mui-icon{
+	font-size: 1.0rem;
+	margin-right: 10px;
+}
+
+.gz{
+	
+}
+
+/*关注人数*/
+.gzN{
+	font-size: 1.1rem;
+	margin-left: 5px;
+	margin-right: 10px;
+}
+
+/*回复人数*/
+.pl{
+	font-size: 1.1rem;
+}
+
+/*关注*/
+.icon-guanzhu1{
+	color:#e30177;
+	
+}
+.iconfont{
+ font-size: 1.1rem !important;
+}
+
+/*浏览人数*/
+.clickNum{
+	font-size: 1.0rem;
+	margin-left: 10px;
+}
+

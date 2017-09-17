@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>发表提问</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+	     <link rel="stylesheet" type="text/css" href="../css/castapp.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../libs/emojione/emojione.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/forum_post.css" />
+	</head>
+
+	<body class="mui-content public-gray-bgcolor">
+		<!--标题栏-->
+		<header id="home-header" class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left public-white-color"></a>
+			<h1 id="forum_post_title" class="mui-title">发布提问</h1>
+		</header>
+		<!--主体内容部分-->
+		<div id="content" class="mui-content public-gray-bgcolor">
+			<div class="mui-content-padded" style="margin: 5px;">
+				<h5>提问标题</h5>
+				<div class="mui-input-row">
+					<input id="postTitle" type="text" placeholder="请输入提问标题" maxlength="50">
+				</div>
+				<h5>提问版块</h5>
+				<div class="mui-input-row">
+					<select id="category" name="category">
+						<option value="" selected="true">--请选择--</option>
+					</select>
+				</div>
+				<h5>提问内容</h5>
+				<div class="mui-input-row">
+					<textarea id="postContent" rows="6" placeholder="请输入提问内容"></textarea>
+				</div>
+				<div class="mui-button-row">
+					<button id="btnSave" type="button" class="mui-btn mui-btn-primary">保存</button>
+				</div>
+			</div>
+		</div>
+		<script src="../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/castapp.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/comme.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="../libs/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="../libs/emojione/emojione.js"></script>
+		<script type="text/javascript" src="../js/forum_post.js"></script>
+	</body>
+
+</html>
