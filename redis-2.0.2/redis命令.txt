@@ -1,0 +1,23 @@
+redis-server redis.conf
+
+
+redis-cli -h 127.0.0.1 -p 6379 -a foobared
+redis-cli -h 127.0.0.1 -p 6379 -a foobared shutdown
+
+redis-cli -h 10.1.1.111 -p 6379 -a foobared
+redis-cli -h 10.220.67.85 -p 14005 -a foobared
+
+
+flushdb
+
+
+redis-cli -h 10.109.226.152 -p 7001 -a rdsi_2014
+
+
+连接到服务器：
+2.重新开启一个cmd命令窗口开始链接redis服务
+redis-cli.exe -h 192.168.12.21  //要连接的redis服务器
+auth  密码  //auth + 密码 连接进入redis
+
+
+
